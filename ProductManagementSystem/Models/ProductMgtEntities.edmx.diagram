@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edc379a0edf143939531044abdf53aba" Name="Diagram1">
+        <EntityTypeShape EntityType="ProductManagementModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductManagementModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductManagementModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductManagementModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductManagementModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductManagementModel.CATEGORY" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductManagementModel.COLOUR" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductManagementModel.SIZE" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="ProductManagementModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductManagementModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ProductManagementModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProductManagementModel.ProductVariant" Width="1.5" PointX="5.25" PointY="11.125" />
+        <EntityTypeShape EntityType="ProductManagementModel.ProductType" Width="1.5" PointX="7.375" PointY="6.875" />
+        <AssociationConnector Association="ProductManagementModel.FK_ProductVariant_PRODUCT1" />
+        <AssociationConnector Association="ProductManagementModel.FK_ProductVariant_ProductVariant" />
+        <AssociationConnector Association="ProductManagementModel.FK_ProductVariant_SIZE" />
+        <EntityTypeShape EntityType="ProductManagementModel.CompositeProduct" Width="1.5" PointX="9.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ProductManagementModel.PRODUCT" Width="1.5" PointX="10" PointY="2.25" />
+        <AssociationConnector Association="ProductManagementModel.FK_PRODUCT_CATEGORY" />
+        <AssociationConnector Association="ProductManagementModel.FK_PRODUCT_ProductType" />
+        <AssociationConnector Association="ProductManagementModel.FK_ProductVariant_PRODUCT" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

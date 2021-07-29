@@ -1,0 +1,85 @@
+﻿@model ProductManagementSystem.Models.SIZE
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Edit Size</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+                        <li class="breadcrumb-item active">Size</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger" id="alert-danger" role="alert">
+                @TempData["error"]
+            </div>
+
+        }
+
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.SIZE_ID)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SIZE_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.SIZE_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SIZE_NAME, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Update" class="btn btn-success" />
+                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    }
+
+
+
+                    <!-- /.row -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+
+                </div>
+            </div>
+
+
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+

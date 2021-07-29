@@ -1,0 +1,381 @@
+﻿@model ProductManagementSystem.ViewModels.ProductVM
+@{
+    ViewBag.Title = "Edit";
+    int step = 1;
+    try
+    {
+        step = Convert.ToInt32(Request.QueryString["step"].ToString());
+        if (step == 0)
+        {
+            step = 1;
+        }
+    }
+    catch (Exception)
+    {
+
+        step = 1;
+    }
+    int maxPages = 3;
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Create New Product</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+                        <li class="breadcrumb-item active">Product</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger" id="alert-danger" role="alert">
+                @TempData["error"]
+            </div>
+
+        }
+
+        <div class="container-fluid">
+            @if (TempData["error"] != null)
+            {
+                <div class="alert alert-danger" id="alert-danger" role="alert">
+                    @TempData["error"]
+                </div>
+
+            }
+            else if (TempData["success"] != null)
+            {
+                <div class="alert alert-success" id="alert-success" role="alert">
+                    @TempData["success"]
+                </div>
+
+            }
+            @if (step == 1)
+            {
+                using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4>Product General Details</h4>
+                        </div>
+                        <!-- /.card-header -->
+
+                        <div class="card-body">
+
+
+
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="productName">Product Name</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.PRODUCT_NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_NAME, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productDescription">Product Description</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.PRODUCT_DESCRIPTION, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_DESCRIPTION, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Product Category</label>
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.CategoryID, ViewBag.List as SelectList, "Please select Product Category", new { @class = " form-control ", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Firstname">Product Type</label>
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.PRODUCT_TypeID, ViewBag.List1 as SelectList, "Please select Product Type", new { @class = " form-control ", required = "required", id = "PRODUCT_TypeID" })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_TypeID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productCode">Product Code</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.PRODUCT_CODE, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_DESCRIPTION, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productCost" id="productCost">Product Cost</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.PRODUCT_COST, new { htmlAttributes = new { @class = "form-control", id = "PRODUCT_COST" } })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_COST, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productPrice" id="productPrice">Product Price</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.PRODUCT_PRICE, new { htmlAttributes = new { @class = "form-control", id = "PRODUCT_PRICE" } })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_PRICE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productQuantity" id="productQuantity">Product Quantity</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.PRODUCT_QTY, new { htmlAttributes = new { @class = "form-control", id = "PRODUCT_QTY" } })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_QTY, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <input type="submit" value="Next" class="btn btn-success float-right" />
+                        </div>
+
+                    </div>
+                }
+            }
+            else if (step == 2)
+            {
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h4>Product Variants</h4>
+                    </div>
+                    <!-- /.card-header -->
+
+                    <div class="card-body">
+                        @using (Html.BeginForm("EditProductVariant", "Product", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.MainProductId)
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PRODUCT_ID, "Please Select Product", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.PRODUCT_ID, ViewBag.List2 as SelectList, "PLease select Product", new { @class = " form-control ", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.PRODUCT_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SizeId, " Select Size", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.SizeId, ViewBag.List4 as SelectList, "PLease select Size", new { @class = " form-control ", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.SizeId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ColourId, " Select Colour", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.ColourId, ViewBag.List3 as SelectList, "PLease select Colour", new { @class = " form-control ", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.ColourId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productCost">Product Cost</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ProductCost, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.ProductCost, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productPrice">Product Price</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productQuantity">Product Quantity</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ProductQty, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.ProductQty, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-3">
+                                    <label for="productSKU">SKU</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.SKU, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.SKU, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Add Variant" class="btn btn-success" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <table class="table table-striped table-bordered" style="margin-left:20px;margin-right:20px;" id="example3">
+                            <thead>
+                                <tr>
+                                    <th>Variant Id</th>
+                                    <th>Product Name</th>
+                                    <th>Product Cost</th>
+                                    <th>Product Price</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                    <th>SKU</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @if (Model.vList != null)
+                            {
+                                for (int i = 0; i < Model.vList.Count; i++)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].ProductVariantID) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].productName) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].ProductCost) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].ProductPrice) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].ColourName) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].SizeName) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].ProductQty) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.vList[i].SKU) </td>
+                                            <td class="btn btn-group">
+                                                @Html.ActionLink("Delete", "Delete", new { id = Model.vList[i].ProductVariantID }, new { @class = "btn btn-danger" })
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                }
+                            }
+                        </table>
+
+
+
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        @Html.ActionLink("Previous", "Previous", "Product", null, new { @class = "btn btn-warning float-left" })
+                    </div>
+
+                </div>
+
+            }
+            else if (step == 3)
+            {
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h4>Create Composite Items</h4>
+                    </div>
+                    <!-- /.card-header -->
+
+                    <div class="card-body">
+                        @using (Html.BeginForm("EditCompositeProduct", "Product", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CompositeProductId, "Select Product", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.CompositeProductId, ViewBag.List2 as SelectList, "PLease select Product", new { @class = " form-control ", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.CompositeProductId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Mandatory, "Mandatory", htmlAttributes: new { @class = "control-label col-md-2", id = "Mandatory" })
+                                    <div class="col-md-6">
+                                        @Html.CheckBoxFor(model => model.Mandatory, new { @class = " form-control ", id = "Mandatorychk" })
+                                        @Html.ValidationMessageFor(model => model.Mandatory, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Costed, "ExtraCosted", htmlAttributes: new { @class = "control-label col-md-2", id = "costed" })
+                                    <div class="col-md-6">
+                                        @Html.CheckBoxFor(model => model.Costed, new { @class = " form-control ", id = "extraCosted" })
+                                        @Html.ValidationMessageFor(model => model.Costed, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="extraPrice" id="price">ExtraPrice</label>
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ExtraPrice, new { htmlAttributes = new { @class = "form-control",  id = "ExtraPrice" } })
+                                        @Html.ValidationMessageFor(model => model.ExtraPrice, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Add Line" class="btn btn-success" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <table class="table table-striped table-bordered" style="margin-left:20px;margin-right:20px;" id="example3">
+                            <thead>
+                                <tr>
+                                    <th>Composite ID</th>
+                                    <th>Product Name</th>
+                                    
+                                    <th>Extra Price</th>
+                                    <th>Mandatory</th>
+                                    <th>Costed</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @if (Model.cList != null)
+                            {
+                                for (int i = 0; i < Model.cList.Count; i++)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td> @Html.DisplayFor(modelItem => Model.cList[i].CompositeId) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.cList[i].CompositeProductname) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.cList[i].CompositeProductname) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.cList[i].ExtraPrice) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.cList[i].Mandatory) </td>
+                                            <td> @Html.DisplayFor(modelItem => Model.cList[i].Costed) </td>
+                                            <td class="btn btn-group">
+                                                @Html.ActionLink("Delete", "DeleteCompositeProduct", new { id = Model.cList[i].CompositeId }, new { @class = "btn btn-danger" })
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                }
+                            }
+                        </table>
+
+
+
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        @Html.ActionLink("Previous", "Previous1", "Product", null, new { @class = "btn btn-warning float-left" })
+                    </div>
+
+                </div>
+
+            }
+
+
+
+
+        </div><!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
+</div>
+

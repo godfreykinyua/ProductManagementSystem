@@ -1,0 +1,778 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProductManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORYID" />
+          </Key>
+          <Property Name="CATEGORYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CATEGORY_IMG" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="COLOUR">
+          <Key>
+            <PropertyRef Name="COLOUR_ID" />
+          </Key>
+          <Property Name="COLOUR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COLOUR_NAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CompositeProduct">
+          <Key>
+            <PropertyRef Name="CompositeId" />
+          </Key>
+          <Property Name="CompositeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MainProductId" Type="int" />
+          <Property Name="CompositeProductId" Type="int" />
+          <Property Name="ExtraPrice" Type="float" />
+          <Property Name="Mandatory" Type="bit" />
+          <Property Name="Costed" Type="bit" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="nvarchar" MaxLength="500" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PRODUCT_COST" Type="float" />
+          <Property Name="PRODUCT_PRICE" Type="float" />
+          <Property Name="PRODUCT_TypeID" Type="int" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="PRODUCT_ORDER_NUMBER" Type="int" />
+          <Property Name="PRODUCT_CREATE_DATE" Type="date" />
+          <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="500" />
+          <Property Name="PRODUCT_QTY" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductVariant">
+          <Key>
+            <PropertyRef Name="ProductVariantID" />
+          </Key>
+          <Property Name="ProductVariantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="ProductPrice" Type="float" />
+          <Property Name="ProductCost" Type="float" />
+          <Property Name="ColourId" Type="int" />
+          <Property Name="SizeId" Type="int" />
+          <Property Name="ProductQty" Type="int" />
+          <Property Name="SKU" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SIZE">
+          <Key>
+            <PropertyRef Name="SIZE_ID" />
+          </Key>
+          <Property Name="SIZE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIZE_NAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_CATEGORY">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORYID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+          <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_ProductVariant">
+          <End Role="COLOUR" Type="Self.COLOUR" Multiplicity="0..1" />
+          <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOUR">
+              <PropertyRef Name="COLOUR_ID" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="ColourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_SIZE">
+          <End Role="SIZE" Type="Self.SIZE" Multiplicity="0..1" />
+          <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIZE">
+              <PropertyRef Name="SIZE_ID" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProductManagementModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COLOUR" EntityType="Self.COLOUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompositeProduct" EntityType="Self.CompositeProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductVariant" EntityType="Self.ProductVariant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIZE" EntityType="Self.SIZE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="Self.FK_PRODUCT_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_ProductType" Association="Self.FK_PRODUCT_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_PRODUCT" Association="Self.FK_ProductVariant_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="ProductVariant" EntitySet="ProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_ProductVariant" Association="Self.FK_ProductVariant_ProductVariant">
+            <End Role="COLOUR" EntitySet="COLOUR" />
+            <End Role="ProductVariant" EntitySet="ProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_SIZE" Association="Self.FK_ProductVariant_SIZE">
+            <End Role="SIZE" EntitySet="SIZE" />
+            <End Role="ProductVariant" EntitySet="ProductVariant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProductManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORYID" />
+          </Key>
+          <Property Name="CATEGORYID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY_IMG" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PRODUCTs" Relationship="ProductManagementModel.FK_PRODUCT_CATEGORY" FromRole="CATEGORY" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="COLOUR">
+          <Key>
+            <PropertyRef Name="COLOUR_ID" />
+          </Key>
+          <Property Name="COLOUR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COLOUR_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductVariants" Relationship="ProductManagementModel.FK_ProductVariant_PRODUCT1" FromRole="COLOUR" ToRole="ProductVariant" />
+        </EntityType>
+        <EntityType Name="SIZE">
+          <Key>
+            <PropertyRef Name="SIZE_ID" />
+          </Key>
+          <Property Name="SIZE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIZE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductVariants" Relationship="ProductManagementModel.FK_ProductVariant_SIZE" FromRole="SIZE" ToRole="ProductVariant" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ProductManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
+          <EntitySet Name="COLOURs" EntityType="Self.COLOUR" />
+          <EntitySet Name="SIZEs" EntityType="Self.SIZE" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="ProductVariants" EntityType="ProductManagementModel.ProductVariant" />
+          <EntitySet Name="ProductTypes" EntityType="ProductManagementModel.ProductType" />
+          <AssociationSet Name="FK_ProductVariant_PRODUCT1" Association="ProductManagementModel.FK_ProductVariant_PRODUCT1">
+            <End Role="COLOUR" EntitySet="COLOURs" />
+            <End Role="ProductVariant" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_ProductVariant" Association="ProductManagementModel.FK_ProductVariant_ProductVariant">
+            <End Role="ProductVariant" EntitySet="ProductVariants" />
+            <End Role="ProductVariant1" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_SIZE" Association="ProductManagementModel.FK_ProductVariant_SIZE">
+            <End Role="SIZE" EntitySet="SIZEs" />
+            <End Role="ProductVariant" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <EntitySet Name="CompositeProducts" EntityType="ProductManagementModel.CompositeProduct" />
+          <EntitySet Name="PRODUCTs" EntityType="ProductManagementModel.PRODUCT" />
+          <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="ProductManagementModel.FK_PRODUCT_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORies" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_ProductType" Association="ProductManagementModel.FK_PRODUCT_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_PRODUCT" Association="ProductManagementModel.FK_ProductVariant_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="ProductVariant" EntitySet="ProductVariants" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ProductVariant">
+          <Key>
+            <PropertyRef Name="ProductVariantID" />
+          </Key>
+          <Property Name="ProductVariantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="ProductPrice" Type="Double" />
+          <Property Name="ProductQty" Type="Int32" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCost" Type="Double" />
+          <Property Name="ColourId" Type="Int32" />
+          <Property Name="SizeId" Type="Int32" />
+          <NavigationProperty Name="COLOUR" Relationship="ProductManagementModel.FK_ProductVariant_PRODUCT1" FromRole="ProductVariant" ToRole="COLOUR" />
+          <NavigationProperty Name="SIZE" Relationship="ProductManagementModel.FK_ProductVariant_SIZE" FromRole="ProductVariant" ToRole="SIZE" />
+          <NavigationProperty Name="PRODUCT" Relationship="ProductManagementModel.FK_ProductVariant_PRODUCT" FromRole="ProductVariant" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRODUCTs" Relationship="ProductManagementModel.FK_PRODUCT_ProductType" FromRole="ProductType" ToRole="PRODUCT" />
+        </EntityType>
+        <Association Name="FK_ProductVariant_PRODUCT1">
+          <End Type="ProductManagementModel.COLOUR" Role="COLOUR" Multiplicity="0..1" />
+          <End Type="ProductManagementModel.ProductVariant" Role="ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOUR">
+              <PropertyRef Name="COLOUR_ID" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="ColourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_ProductVariant">
+          <End Type="ProductManagementModel.ProductVariant" Role="ProductVariant" Multiplicity="1" />
+          <End Type="ProductManagementModel.ProductVariant" Role="ProductVariant1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductVariant">
+              <PropertyRef Name="ProductVariantID" />
+            </Principal>
+            <Dependent Role="ProductVariant1">
+              <PropertyRef Name="ProductVariantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_SIZE">
+          <End Type="ProductManagementModel.SIZE" Role="SIZE" Multiplicity="0..1" />
+          <End Type="ProductManagementModel.ProductVariant" Role="ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIZE">
+              <PropertyRef Name="SIZE_ID" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CompositeProduct">
+          <Key>
+            <PropertyRef Name="CompositeId" />
+          </Key>
+          <Property Name="CompositeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MainProductId" Type="Int32" />
+          <Property Name="CompositeProductId" Type="Int32" />
+          <Property Name="ExtraPrice" Type="Double" />
+          <Property Name="Mandatory" Type="Boolean" />
+          <Property Name="Costed" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCT_COST" Type="Double" />
+          <Property Name="PRODUCT_PRICE" Type="Double" />
+          <Property Name="PRODUCT_TypeID" Type="Int32" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="PRODUCT_ORDER_NUMBER" Type="Int32" />
+          <Property Name="PRODUCT_CREATE_DATE" Type="DateTime" Precision="0" />
+          <Property Name="PRODUCT_CODE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCT_QTY" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="CATEGORY" Relationship="ProductManagementModel.FK_PRODUCT_CATEGORY" FromRole="PRODUCT" ToRole="CATEGORY" />
+          <NavigationProperty Name="ProductType" Relationship="ProductManagementModel.FK_PRODUCT_ProductType" FromRole="PRODUCT" ToRole="ProductType" />
+          <NavigationProperty Name="ProductVariants" Relationship="ProductManagementModel.FK_ProductVariant_PRODUCT" FromRole="PRODUCT" ToRole="ProductVariant" />
+        </EntityType>
+        <Association Name="FK_PRODUCT_CATEGORY">
+          <End Type="ProductManagementModel.CATEGORY" Role="CATEGORY" Multiplicity="0..1" />
+          <End Type="ProductManagementModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORYID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_ProductType">
+          <End Type="ProductManagementModel.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="ProductManagementModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_PRODUCT">
+          <End Type="ProductManagementModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
+          <End Type="ProductManagementModel.ProductVariant" Role="ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProductManagementModelStoreContainer" CdmEntityContainer="ProductManagementEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ProductManagementModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ProductManagementModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ProductManagementModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ProductManagementModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ProductManagementModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORies">
+            <EntityTypeMapping TypeName="ProductManagementModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="CATEGORY_IMG" ColumnName="CATEGORY_IMG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COLOURs">
+            <EntityTypeMapping TypeName="ProductManagementModel.COLOUR">
+              <MappingFragment StoreEntitySet="COLOUR">
+                <ScalarProperty Name="COLOUR_ID" ColumnName="COLOUR_ID" />
+                <ScalarProperty Name="COLOUR_NAME" ColumnName="COLOUR_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIZEs">
+            <EntityTypeMapping TypeName="ProductManagementModel.SIZE">
+              <MappingFragment StoreEntitySet="SIZE">
+                <ScalarProperty Name="SIZE_ID" ColumnName="SIZE_ID" />
+                <ScalarProperty Name="SIZE_NAME" ColumnName="SIZE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ProductManagementModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ProductVariants">
+            <EntityTypeMapping TypeName="ProductManagementModel.ProductVariant">
+              <MappingFragment StoreEntitySet="ProductVariant">
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="ColourId" ColumnName="ColourId" />
+                <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="ProductQty" ColumnName="ProductQty" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductVariantID" ColumnName="ProductVariantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="ProductManagementModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="ProductTypeName" ColumnName="ProductTypeName" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompositeProducts">
+            <EntityTypeMapping TypeName="ProductManagementModel.CompositeProduct">
+              <MappingFragment StoreEntitySet="CompositeProduct">
+                <ScalarProperty Name="Costed" ColumnName="Costed" />
+                <ScalarProperty Name="Mandatory" ColumnName="Mandatory" />
+                <ScalarProperty Name="ExtraPrice" ColumnName="ExtraPrice" />
+                <ScalarProperty Name="CompositeProductId" ColumnName="CompositeProductId" />
+                <ScalarProperty Name="MainProductId" ColumnName="MainProductId" />
+                <ScalarProperty Name="CompositeId" ColumnName="CompositeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="ProductManagementModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PRODUCT_QTY" ColumnName="PRODUCT_QTY" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_CREATE_DATE" ColumnName="PRODUCT_CREATE_DATE" />
+                <ScalarProperty Name="PRODUCT_ORDER_NUMBER" ColumnName="PRODUCT_ORDER_NUMBER" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="PRODUCT_TypeID" ColumnName="PRODUCT_TypeID" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="PRODUCT_COST" ColumnName="PRODUCT_COST" />
+                <ScalarProperty Name="PRODUCT_DESCRIPTION" ColumnName="PRODUCT_DESCRIPTION" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

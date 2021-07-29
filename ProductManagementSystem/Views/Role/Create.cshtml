@@ -1,0 +1,47 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Add New Role";
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Create New Role</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+                        <li class="breadcrumb-item active">Role</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <h2>Add New User Role:</h2>
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+
+
+                @using (Html.BeginForm())
+                {
+                    <p> Enter User Role Name:</p>
+
+                    @Html.EditorFor(m => m.Name,new { @class="form-control"})
+                    <input type="submit" value="Create Role" class="btn btn-success" />
+                }
+                <!-- ./col -->
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
